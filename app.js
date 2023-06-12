@@ -5,8 +5,11 @@ import * as dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import signUp from "./routes/signUpRoute.js";
+import login from "./routes/loginRoute.js"
 
+app.use(express.json());
 app.use(cors());
+
 app.get("/", (req, res) => {
   res.send("working");
 });
@@ -17,9 +20,9 @@ const db = mongoose.connection;
 db.on("error", (errorMessage) => console.log(errorMessage));
 db.once("open", () => console.log("connected successfully to the database"));
 
-app.use(express.json());
 
 app.use("/api/v1/signup", signUp);
+app.use("/api/v1/login", login);
 
 app.listen(PORT, () => {
   console.log(`server running in http://localhost:${PORT}`);
