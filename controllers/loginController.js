@@ -12,7 +12,7 @@ const loginUser = async (req, res) => {
     return res.status(401).json({ message: "Email not found" });
   }
 
-  if (bcrypt.compare(password, validUser.password)) {
+  if (bcrypt.compareSync(password, validUser.password)) {
     const AUTH_TOKEN = jwt.sign({ email: validUser.email }, JWT_TOKEN);
 
     if (res.status(201)) {
