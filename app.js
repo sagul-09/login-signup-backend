@@ -5,7 +5,8 @@ import * as dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import signUp from "./routes/signUpRoute.js";
-import login from "./routes/loginRoute.js"
+import login from "./routes/loginRoute.js";
+import userData from "./routes/userDataRoute.js";
 
 app.use(express.json());
 app.use(cors());
@@ -23,6 +24,7 @@ db.once("open", () => console.log("connected successfully to the database"));
 
 app.use("/api/v1/signup", signUp);
 app.use("/api/v1/login", login);
+app.use("/api/v1/user-data",userData)
 
 app.listen(PORT, () => {
   console.log(`server running in http://localhost:${PORT}`);
